@@ -694,9 +694,7 @@ class ImapMailSource(BaseMailSource):
 
     def _mailbox_name(self, path):
         # len('src:/') = 5
-        path = str(path[(5 + len(self.my_config._key)):])
-        if path.startswith('INBOX.'):
-            path = path[6:]
+        path = str(path[(5 + len(self.my_config._key)):]).replace(".", "/")
         try:
             return path.decode('imap4-utf-7')
         except:
